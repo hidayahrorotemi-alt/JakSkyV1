@@ -204,6 +204,16 @@ body{
 }
   #history .item > div{
   flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:6px;
+  }
+
+#history .item button{
+  padding:8px 14px !important;
+  font-size:13px !important;
+  border-radius:12px !important;
 }
 
 #history h3{

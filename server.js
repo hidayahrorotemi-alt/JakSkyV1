@@ -666,8 +666,8 @@ app.post("/api/posts/:postId/comments/:i/like", (req, res) => {
 app.post("/api/posts/:postId/comments/:i/pin", (req, res) => {
   const role = String(req.body.role || "").toLowerCase();
 
-  if (role !== "moderator") {
-    return res.status(403).json({ message: "Hanya moderator yang bisa pin" });
+  if (role !== "moderator" && role !== "owner") {
+  return res.status(403).json({ message: "Hanya moderator/owner yang bisa pin" });
   }
 
   const { posts, post } = findPost(req.params.postId);

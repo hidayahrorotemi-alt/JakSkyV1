@@ -347,7 +347,29 @@ app.post("/api/unlock/:id", (req, res) => {
 /* =========================
    ADMIN / MOD COMMENTS
 ========================= */
+app.post("/api/admin/posts/:postId/comment", (req, res) => {
+  const { posts, post } = findPost(req.params.postId);
+  if (!post) return res.status(404).json({ message: "Post tidak ditemukan" });
 
+  const text = String(req.body.text || "").trim();
+  if (!text) return res.status(400).json({ message: "Komentar kosong" });
+
+  post.comments = Array.isArray(post.comments) ? post.comments : [];
+
+  post.comments.push({
+    id: Date.now().toString(),
+    name: req.body.name || req.body.adminName || "Admin",
+    text,
+    comment: text,
+    role: req.body.role || "moderator",
+    isAdmin: true,
+    replies: [],
+    createdAt: new Date().toISOString()
+  });
+
+  writePosts(posts);
+  res.json({ ok: true, post });
+});
 app.post("/api/admin/posts/:postId/comments/:i/reply", (req, res) => {
   const posts = readPosts();
   const post = posts.find(p => String(p.id) === String(req.params.postId));

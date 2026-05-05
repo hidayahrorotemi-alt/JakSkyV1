@@ -1043,10 +1043,17 @@ function renderComments(){
     return;
   }
 
-  arr.forEach(function(c){
-    html += '<div class="comment">'
-      + '<b>'+(c.name || "User")+'</b>'
-      + '<p>'+(c.text || c.comment || "")+'</p>';
+  arr.forEach(function(c, i){
+  html += '<div class="comment">'
+    + '<small style="color:#888;">📹 '+ (active.title || "Video") +'</small><br>'
+    + '<b>'+ (c.name || "User") +'</b>'
+    + '<p>'+ (c.text || c.comment || "") +'</p>';
+    + '<div class="comment-actions">'
++ '<button onclick="likeComment('+i+')">👍</button>'
++ '<button onclick="reportComment('+i+')">🚫</button>'
++ '<button onclick="pinComment('+i+')">📌</button>'
++ '<button onclick="deleteComment('+i+')">🗑️</button>'
++ '</div>';
 
     var replies = c.replies || [];
     replies.forEach(function(r){

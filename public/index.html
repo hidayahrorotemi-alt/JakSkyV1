@@ -1085,8 +1085,9 @@ function pinComment(i){
 }
 
 function deleteComment(i){
-  apiPost("/api/admin/delete-comment/"+active.id+"/"+i,{})
-  .then(()=>load());
+  apiPost("/api/admin/delete-comment/"+active.id+"/"+i,{
+    role: localStorage.getItem("role")
+  }).then(()=>load());
 }
 function closeModal(){
   var player = document.getElementById("player");

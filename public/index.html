@@ -1074,22 +1074,29 @@ function renderComments(){
 
   document.getElementById("comments").innerHTML = html;
 }
-function likeComment(i){
-  apiPost("/api/posts/"+active.id+"/comments/"+i+"/like",{})
-  .then(()=>load());
-}
   
+function likeComment(i){
+  fetch("/api/posts/"+active.id+"/comments/"+i+"/like",{
+    method:"POST"
+  }).then(()=>load());
+}
+
 function pinComment(i){
-  apiPost("/api/posts/"+active.id+"/comments/"+i+"/pin",{
-    role: localStorage.getItem("role")
+  fetch("/api/posts/"+active.id+"/comments/"+i+"/pin",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({role:"owner"})
   }).then(()=>load());
 }
 
 function deleteComment(i){
-  apiPost("/api/admin/comment/"+active.id+"/"+i,{
-    role: localStorage.getItem("role")
+  fetch("/api/admin/comment/"+active.id+"/"+i,{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({role:"owner"})
   }).then(()=>load());
 }
+  
 function closeModal(){
   var player = document.getElementById("player");
   document.getElementById("modal").classList.add("hidden");

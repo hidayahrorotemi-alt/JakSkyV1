@@ -1046,8 +1046,13 @@ function renderComments(){
 
   arr.forEach(function(c, i){
   html += '<div class="comment">'
-    + '<small style="color:#888;">📹 '+ (active.title || "Video") +'</small><br>'
-    + '<b>'+ (c.name || "User") +'</b>'
+   + '<b>'+ (c.name || "User") +'</b>'
++ (c.role === "owner"
+  ? ' <span style="color:gold;font-weight:bold;">👑 OWNER</span>'
+  : c.role === "moderator"
+  ? ' <span style="color:#00bfff;font-weight:bold;">🛡️ MOD</span>'
+  : '')
++ ' <small style="color:#888;">• '+ (active.title || "Video") +'</small>'
     + '<p>'+ (c.text || c.comment || "") +'</p>'
     + '<div class="comment-actions">'
 + '<button onclick="likeComment('+i+')">👍</button>'

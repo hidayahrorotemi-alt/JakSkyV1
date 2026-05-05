@@ -1091,7 +1091,7 @@ function pinComment(i){
 
 function deleteComment(i){
   fetch("/api/admin/comment/"+active.id+"/"+i,{
-    method:"DELETE"
+    method:"POST"
   }).then(()=>load());
 }
   

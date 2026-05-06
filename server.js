@@ -769,25 +769,6 @@ const server = app.listen(PORT, "0.0.0.0", () => {
 
 server.timeout = 0;
 
-app.delete("/api/admin/comment/:postId/:i", (req, res) => {
-  const posts = readPosts();
-  const post = posts.find(p => String(p.id) === String(req.params.postId));
-
-  if (!post) return res.status(404).json({ message: "Post tidak ditemukan" });
-
-  post.comments = Array.isArray(post.comments) ? post.comments : [];
-  const i = Number(req.params.i);
-
-  if (!post.comments[i]) {
-    return res.status(404).json({ message: "Komentar tidak ditemukan" });
-  }
-
-  post.comments.splice(i, 1);
-  writePosts(posts);
-
-  res.json({ ok: true, post });
-});
-
 app.post("/api/admin/comment/:postId/:i", (req, res) => {
   console.log("KENA DELETE", req.params.postId, req.params.i);
   const posts = readPosts();

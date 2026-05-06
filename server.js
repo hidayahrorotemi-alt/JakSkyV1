@@ -789,7 +789,19 @@ app.delete("/api/admin/comment/:postId/:i", (req, res) => {
 });
 
 app.post("/api/admin/comment/:postId/:i", (req, res) => {
-  req.url = "/api/admin/comment/" + req.params.postId + "/" + req.params.i;
-  req.method = "DELETE";
-  app._router.handle(req, res);
-});
+  console.log("KENA DELETE", req.params.postId, req.params.i);
+  const posts = readPosts();
+  const post = posts.find(p => String(p.id) === String(req.params.postId));
+
+  if (!post) return res.status(404).json({ message: "Post tidak ditemukan" });
+
+  post.comments = Array.isArray(post.comments) ? post.comments : [];
+
+const id = String(req.params.i);
+
+post.comments = post.comments.filter(c => String(c.id) !== id);
+
+writePosts(posts);
+
+res.json({ ok: true, post });
+  

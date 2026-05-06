@@ -1059,7 +1059,7 @@ function renderComments(){
     + '<div class="comment-actions">'
 + '<button type="button" onclick="likeComment('+i+')">👍</button>'
 + '<button type="button" onclick="pinComment('+i+')">📌</button>'
-+ '<button type="button" onclick="deleteComment('+i+')">🗑️</button>'
++ '<button type="button" onclick="deleteComment(\''+c.id+'\')">🗑️</button>'
 
     var replies = c.replies || [];
     replies.forEach(function(r){

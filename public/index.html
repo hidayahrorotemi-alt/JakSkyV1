@@ -1163,14 +1163,25 @@ function keluarWeb(){
 </body>
 
 <style>
+/* 🔥 FORCE FLATTEN TOTAL */
 .comment,
-.comment *,
+.comment *{
+  display:block!important;
+  margin-left:0!important;
+  padding-left:0!important;
+  border-left:none!important;
+}
+
+.comment div{
+  margin-left:0!important;
+  padding-left:0!important;
+}
+
 .adminReplyShow,
 .adminReplyShow *{
   margin-left:0!important;
-  border-left:none!important;
   padding-left:0!important;
-  transform:none!important;
+  border-left:none!important;
 }
 
 .comment{

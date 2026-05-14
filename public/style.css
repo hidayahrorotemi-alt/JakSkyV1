@@ -461,9 +461,10 @@ button{
 /* ADMIN REPLY */
 .adminReplyShow{
   background:#ffe3f3!important;
-  border-left:4px solid #2ea8ff!important;
+  border-left:none!important;;
   padding:8px!important;
   border-radius:10px!important;
+  margin-left:0!important;
   margin-top:6px!important;
 }
 

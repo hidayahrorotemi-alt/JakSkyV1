@@ -1737,13 +1737,14 @@ html{
 
 .commentItem{
   margin-bottom:12px;
-  padding-left:10px;
-  border-left:2px solid #ff6ec7;
   background:rgba(255,255,255,.6);
-border-radius:12px;
-padding:10px;
+  border-radius:12px;
+  padding:10px;
 }
-
+.commentReply{
+  margin-left:0!important;
+  border-left:none!important;
+  }
 .commentName{
   font-weight:700;
   font-size:14px;

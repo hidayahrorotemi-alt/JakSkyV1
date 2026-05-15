@@ -1159,54 +1159,7 @@ function keluarWeb(){
       Keluar
     </button>
   </div>
-<div id="maintenance">
-  <div class="box">
-    <h1>🚧 Maintenance</h1>
-    <p>Lagi upgrade sistem biar makin ngebut 😎</p>
-    <p>Selesai dalam:</p>
-    <h2 id="countdown"></h2>
-    <p>Sabar ya 🙏</p>
-  </div>
-</div>
-<script>
-  var maintenance = true;
-
-// 🔥 GANTI DENGAN PASSWORD ADMIN LO
-var isAdmin = window.location.search.includes("admin=true");
-
-function updateMaintenance(){
-  var box = document.getElementById("maintenance");
-  var countdown = document.getElementById("countdown");
-
-  var now = new Date();
-  var target = new Date();
-  target.setHours(18, 30, 0, 0);
-
-  var diff = target - now;
-
-  // 👉 ADMIN BYPASS
-  if(isAdmin){
-    box.style.display = "none";
-    return;
-  }
-
-  if(!maintenance || diff <= 0){
-    box.style.display = "none";
-    return;
-  }
-
-  var h = Math.floor(diff / (1000 * 60 * 60));
-  var m = Math.floor((diff / (1000 * 60)) % 60);
-  var s = Math.floor((diff / 1000) % 60);
-
-  countdown.innerHTML = h + " jam " + m + " menit " + s + " detik";
-}
-
-updateMaintenance();
-setInterval(updateMaintenance, 1000);
-</script>
-
-  <style>
+<style>
 /* 🔥 FORCE FLATTEN TOTAL */
 
 .comment div{
@@ -1229,36 +1182,6 @@ setInterval(updateMaintenance, 1000);
   margin-top:10px!important;
   margin-left:0!important;
   border-left:none!important;
-
-  #maintenance{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100vw;
-  height:100vh;
-  background:linear-gradient(135deg,#ff2e8a,#ff6ec7);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  z-index:9999999999;
-  }
-  
-  #maintenance .box{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-
-  background:white;
-  padding:25px;
-  border-radius:16px;
-
-  width:90%;
-  max-width:300px;
-  }
 
 </style>
 </html>

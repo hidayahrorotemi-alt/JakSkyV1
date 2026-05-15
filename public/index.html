@@ -1160,28 +1160,58 @@ function keluarWeb(){
     </button>
   </div>
 </div>
-</body>
+  <div id="maintenance">
+  <div class="box">
+    <p>Selesai dalam:</p>
+<h2 id="countdown"></h2>
+    <h1>🚧 Maintenance</h1>
+    <p>Lagi upgrade sistem biar makin ngebut 😎</p>
+    <p>Sabar ya 🙏</p>
+  </div>
+</div>
 
-<style>
-/* 🔥 FORCE FLATTEN TOTAL */
-.comment,
-.comment *{
-  display:block!important;
-  margin-left:0!important;
-  padding-left:0!important;
-  border-left:none!important;
+<script>
+  var maintenance = true;
+
+// 🔥 GANTI DENGAN PASSWORD ADMIN LO
+var isAdmin = window.location.search.includes("admin=true");
+
+function updateMaintenance(){
+  var box = document.getElementById("maintenance");
+  var countdown = document.getElementById("countdown");
+
+  var now = new Date();
+  var target = new Date();
+  target.setHours(18, 30, 0, 0);
+
+  var diff = target - now;
+
+  // 👉 ADMIN BYPASS
+  if(isAdmin){
+    box.style.display = "none";
+    return;
+  }
+
+  if(!maintenance || diff <= 0){
+    box.style.display = "none";
+    return;
+  }
+
+  var h = Math.floor(diff / (1000 * 60 * 60));
+  var m = Math.floor((diff / (1000 * 60)) % 60);
+  var s = Math.floor((diff / 1000) % 60);
+
+  countdown.innerHTML = h + " jam " + m + " menit " + s + " detik";
 }
+
+updateMaintenance();
+setInterval(updateMaintenance, 1000);
+</script>
+/* 🔥 FORCE FLATTEN TOTAL */
 
 .comment div{
   margin-left:0!important;
   padding-left:0!important;
-}
-
-.adminReplyShow,
-.adminReplyShow *{
-  margin-left:0!important;
-  padding-left:0!important;
-  border-left:none!important;
 }
 
 .comment{
@@ -1189,6 +1219,7 @@ function keluarWeb(){
   padding:14px!important;
   border-radius:18px!important;
   margin:12px 0!important;
+  border-left:none!important;
 }
 
 .adminReplyShow{
@@ -1196,7 +1227,28 @@ function keluarWeb(){
   padding:12px!important;
   border-radius:14px!important;
   margin-top:10px!important;
+  margin-left:0!important;
+  border-left:none!important;
+
+  #maintenance{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:linear-gradient(135deg,#ff2e8a,#ff6ec7);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:99999;
+}
+
+#maintenance .box{
+  background:white;
+  padding:30px;
+  border-radius:20px;
+  text-align:center;
+}
 }
 </style>
-
 </html>

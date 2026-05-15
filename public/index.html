@@ -1082,11 +1082,11 @@ function renderComments(){
 
     var replies = c.replies || [];
     replies.forEach(function(r){
-      html += '<div class="comment adminReplyShow">'
-+ '<button class="replyBtn" onclick="replyComment(\''+c.id+'\')">Balas</button>'
-+ '<div class="replyContent">'
-+ '<div><b>'+(r.name || "Admin")+'</b> <span class="verifyBadge">ADMIN</span></div>'
-+ '<div>'+(r.text || "")+'</div>'
+      html += '<div class="comment">'
++ '<b>'+(r.name || "Admin")+' <span class="verifyBadge">ADMIN</span></b>'
++ '<p>'+(r.text || "")+'</p>'
++ '<div class="comment-actions">'
++ '<button onclick="replyComment(\''+c.id+'\')">Balas</button>'
 + '</div>'
 + '</div>';
     });
@@ -1249,8 +1249,18 @@ span {
   outline: none !important;
 }
 
-:focus-visible {
+.focus-visible {
   outline: none !important;
+}
+
+/* 🔥 TAMBAH DI SINI */
+.verifyBadge{
+  background:#4fc3f7;
+  color:white;
+  font-size:10px;
+  padding:2px 6px;
+  border-radius:6px;
+  margin-left:6px;
   }
 </style>
 </html>

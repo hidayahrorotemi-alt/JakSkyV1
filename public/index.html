@@ -1077,9 +1077,6 @@ function renderComments(){
   : '')
 + ' <small style="color:#888;">• '+ (active.title || "Video") +'</small>'
     + '<p>'+ (c.text || c.comment || "") +'</p>'
-    + '<div class="comment-actions">'
-    + '<button onclick="replyComment(\''+c.id+'\')">Balas</button>'
-
     var replies = c.replies || [];
     replies.forEach(function(r){
       html += '<div class="comment">'

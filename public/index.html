@@ -1083,9 +1083,12 @@ function renderComments(){
     var replies = c.replies || [];
     replies.forEach(function(r){
       html += '<div class="comment adminReplyShow">'
-        + '<b>'+(r.name || "Admin")+' <span class="verifyBadge">ADMIN</span></b>'
-        + '<p>'+(r.text || r.comment || "")+'</p>'
-        + '</div>';
++ '<button class="replyBtn" onclick="replyComment(\''+c.id+'\')">Balas</button>'
++ '<div class="replyContent">'
++ '<div><b>'+(r.name || "Admin")+'</b> <span class="verifyBadge">ADMIN</span></div>'
++ '<div>'+(r.text || "")+'</div>'
++ '</div>'
++ '</div>';
     });
 
     html += '</div>';

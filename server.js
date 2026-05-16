@@ -5,7 +5,6 @@ const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
 const cors = require("cors");
-const { google } = require("googleapis");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -104,10 +103,7 @@ const upload = multer({
     fileSize: 300 * 1024 * 1024
   }
 });
-const auth = new google.auth.GoogleAuth({
-  keyFile: "key.json",
-  scopes: ["https://www.googleapis.com/auth/drive"]
-});
+
 /* =========================
    POSTS
 ========================= */
@@ -124,7 +120,7 @@ app.get("/api/admin/posts", (req, res) => {
    UPLOAD
 ========================= */
 
-async function handleUpload(req, res) {
+function handleUpload(req, res) {
   try {
     const posts = readPosts();
 
@@ -138,10 +134,7 @@ async function handleUpload(req, res) {
       req.files?.videos ||
       [];
 
-    const videos = [];
-for (const v of videoFiles) {
-  const url = await uploadToDrive(v);
-  videos.push(url);
+    const videos = videoFiles.map(v => "/uploads/" + v.filename);
 }
 
     if (!thumb) {

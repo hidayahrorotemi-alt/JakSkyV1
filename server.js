@@ -135,7 +135,6 @@ function handleUpload(req, res) {
       [];
 
     const videos = videoFiles.map(v => "/uploads/" + v.filename);
-}
 
     if (!thumb) {
       return res.status(400).json({ message: "Thumbnail wajib dipilih" });
